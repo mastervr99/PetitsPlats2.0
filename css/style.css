@@ -50,6 +50,7 @@ button.search_button {
 .main_container {
     padding: 20px 0;
     background-color: grey;
+    height: 100vh;
 }
 
 .search_button i {
@@ -76,9 +77,11 @@ button.search_button {
 }
 
 .filters-list {
+    position: absolute;
     display: flex;
+    flex-direction: column;
     padding: 0;
-    gap: 63px;
+    z-index: 5;
 }
 
 .filter-option {
@@ -88,15 +91,20 @@ button.search_button {
     justify-content: space-between;
     padding: 10px;
     position: relative; 
-    border-radius: 11px;
     width: 195px;
     height: 56px;
     background-color: white;
 }
 
+.hidden {
+    display: none;
+}
+
+
 .card_recette {
     height: 731px;
     width: 380px;
+    border-radius: 21px;
 }
 
 .card_recette img {
@@ -109,6 +117,7 @@ button.search_button {
 
 .card-body{
     background-color: white;
+    height: 477px;
     border-bottom-left-radius: 21px;
     border-bottom-right-radius: 21px;
 }
