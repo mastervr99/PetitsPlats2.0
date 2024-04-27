@@ -6,7 +6,7 @@ body {
 
 
 .header {
-    background-image: url(../assets/images/les_petits_plats/Recette18.jpg);
+    background-image: url(../assets/images/lampos-aritonang-24gR_9lCdes-unsplash1.png);
     height: 667px;
     padding: 40px 60px;
 }
@@ -22,8 +22,11 @@ body {
 
 .search_section h2 {
     font-family: 'Anton', sans-serif;
-
+    font-weight: 400;
+    font-size: 44px;
     color: #FFD15B;
+    line-height: 66.24px;
+    margin-bottom: 30px;
 }
 
 .search_form {
@@ -37,9 +40,13 @@ body {
     width: 954px !important;
 }
 
+form input.search_input {
+    border-radius: 10px;
+}
+
 button.search_button {
     position: absolute;
-    right: 185px;
+    right: 180px;
     top: 10px;
     width: 51px;
     height: 51px;
@@ -65,23 +72,28 @@ button.search_button {
     border-radius: 10px;
 }
 
-.filters-container {
+.main-header {
     display: flex;
     justify-content: space-between;
 }
 
-.filters-container p {
+.main-header p {
     font-family: 'Anton', sans-serif;
     font-weight: 400;
     font-size: 21px;
+    padding-top: 20px;
 }
 
-.filters-list {
-    position: absolute;
+.dropdown-lists {
+    display: flex;
+}
+
+.dropdown-list-filter {
     display: flex;
     flex-direction: column;
     padding: 0;
     z-index: 5;
+    margin-right: 70px;
 }
 
 .filter-option {
@@ -89,17 +101,30 @@ button.search_button {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    align-items: center;
+    padding: 15px;
     position: relative; 
     width: 195px;
     height: 56px;
     background-color: white;
+    border-radius: 11px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.filter-option i {
+    /* font-weight: 400; */
 }
 
 .hidden {
     display: none;
 }
 
+
+.main-body {
+    padding-top: 40px;
+}
 
 .card_recette {
     height: 731px;
@@ -120,4 +145,49 @@ button.search_button {
     height: 477px;
     border-bottom-left-radius: 21px;
     border-bottom-right-radius: 21px;
+}
+
+.main-body div.card-body {
+    padding: 35px;
+}
+
+.card-body h3 {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 35px;
+}
+
+.card-body h4 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: #7A7A7A;
+}
+
+.card-text {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #1B1B1B;
+}
+
+.ingredients-list {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+    gap: 20px;
+}
+
+.ingredients-list p {
+    margin-bottom: 0;
+}
+
+.text-body-secondary {
+    font-weight: 400;
+    font-size: 14px;
+    color: #7A7A7A;
 }
