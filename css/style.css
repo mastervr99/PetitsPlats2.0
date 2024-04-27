@@ -57,7 +57,6 @@ button.search_button {
 .main_container {
     padding: 20px 0;
     background-color: grey;
-    height: 100vh;
 }
 
 .search_button i {
@@ -72,12 +71,12 @@ button.search_button {
     border-radius: 10px;
 }
 
-.main-header {
+.recettes-list-header {
     display: flex;
     justify-content: space-between;
 }
 
-.main-header p {
+.recettes-list-header p {
     font-family: 'Anton', sans-serif;
     font-weight: 400;
     font-size: 21px;
@@ -121,8 +120,27 @@ button.search_button {
     display: none;
 }
 
+.card_recette {
+    position: relative;
+}
 
-.main-body {
+.time {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    border-radius: 50px;
+    background-color: #FFD15B;
+    width: 63px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 26px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.recettes-list-body {
     padding-top: 40px;
 }
 
@@ -130,6 +148,7 @@ button.search_button {
     height: 731px;
     width: 380px;
     border-radius: 21px;
+    margin-bottom: 60px;
 }
 
 .card_recette img {
@@ -147,7 +166,7 @@ button.search_button {
     border-bottom-right-radius: 21px;
 }
 
-.main-body div.card-body {
+.recettes-list-body div.card-body {
     padding: 35px;
 }
 
