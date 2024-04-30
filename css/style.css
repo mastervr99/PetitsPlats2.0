@@ -6,7 +6,8 @@ body {
 
 
 .header {
-    background-image: url(../assets/images/lampos-aritonang-24gR_9lCdes-unsplash1.png);
+    background: no-repeat url(../assets/images/lampos-aritonang-24gR_9lCdes-unsplash1.png);
+    background-size: cover;
     height: 667px;
     padding: 40px 60px;
 }
