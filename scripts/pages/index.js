@@ -16,12 +16,11 @@ function searchRecipes(searchTerms) {
 
         if (recipe.name.toLowerCase().includes(searchTerms.toLowerCase())) {
             results.push(recipe);
-        }
-
-        for (let j = 0; j < recipe.ingredients.length; j++) {
-            if (recipe.ingredients[j].ingredient.toLowerCase().includes(searchTerms.toLowerCase())) {
-                results.push(recipe);
-                break;
+        } else {
+            for (let j = 0; j < recipe.ingredients.length; j++) {
+                if (recipe.ingredients[j].ingredient.toLowerCase().includes(searchTerms.toLowerCase())) {
+                    results.push(recipe);
+                }
             }
         }
     }
