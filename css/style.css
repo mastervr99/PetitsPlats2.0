@@ -190,6 +190,9 @@ button.search_button {
     font-weight: 400;
     font-size: 14px;
     color: #1B1B1B;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ingredients-list {
