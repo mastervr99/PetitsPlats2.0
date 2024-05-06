@@ -10,16 +10,20 @@ recipes.forEach(recipe => {
 
 function searchRecipes(searchTerms) {
     let results = [];
+    let searchTermsRegex = new RegExp(searchTerms.toLowerCase());
 
     recipes.forEach(recipe => {
-        if (recipe.name.toLowerCase().includes(searchTerms.toLowerCase())) {
+        if (searchTermsRegex.test(recipe.name.toLowerCase())) {
+            results.push(recipe);
+        } else if (searchTermsRegex.test(recipe.description.toLowerCase())){
             results.push(recipe);
         } else {
-            recipe.ingredients.forEach(ingredient => {
-                if (ingredient.ingredient.toLowerCase().includes(searchTerms.toLowerCase())) {
+            for (let ingredient of recipe.ingredients) {
+                if (searchTermsRegex.test(ingredient.ingredient.toLowerCase())) {
                     results.push(recipe);
+                    break;
                 }
-            });
+            }
         }
     });
 
