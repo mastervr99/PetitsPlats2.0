@@ -20,11 +20,10 @@
       </div>
       <div class="py-5 text-center container search_section">
         <div class="row py-lg-5">
-          <!-- <div class="col-lg-8 col-md-8 mx-auto"> -->
           <div class="search_container">
             <h2 class="fw-light">CHERCHEZ PARMI PLUS DE 1500 RECETTES<br> DU QUOTIDIEN, SIMPLES ET DELICIEUSES</h2>
             <form class="search_form" role="search">
-              <input class="form-control me-2 search_input" type="search" placeholder="Rechercher une recette, un ingrédient" aria-label="Search">
+              <input class="form-control me-2 search_input" type="search" placeholder="Rechercher une recette, un ingrédient" aria-label="Search" minlength="3">
               <button class="btn btn-outline-success search_button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
           </div>
@@ -36,61 +35,39 @@
         <div class="container">
           <div class="recettes-list-header">
             <div class="dropdown-lists">
-              <ul class="dropdown-list-filter" tabindex="0">
-                <li tabindex="0" class="filter-option" aria-label="Trier par Ingrédients">Ingrédients <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
-                <li tabindex="0" class="filter-option hidden" aria-label="Trier par Appareils">Appareils <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
-                <li tabindex="0" class="filter-option hidden" aria-label="Trier par Ustensiles">Ustensiles <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
+              <ul class="dropdown-list-filter ingredients-options-list" tabindex="0">
+                <li tabindex="0" class="option-title" aria-label="Trier par Ingrédients">Ingrédients <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
+                <li tabindex="0" class="search-option hidden" aria-label="Chercher un ingrédient">
+                  <form class="ingredients_search_form" role="search">
+                    <input class="form-control me-2" type="search" aria-label="Search" minlength="3">
+                    <button class="btn component_search_button " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                  </form>
+                </li>
               </ul>
-              <ul class="dropdown-list-filter" tabindex="0">
-                <li tabindex="0" class="filter-option" aria-label="Trier par Ingrédients">Appareils <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
-                <li tabindex="0" class="filter-option hidden" aria-label="Trier par Appareils">Appareils <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
-                <li tabindex="0" class="filter-option hidden" aria-label="Trier par Ustensiles">Ustensiles <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
+              <ul class="dropdown-list-filter appareils-options-list" tabindex="0">
+                <li tabindex="0" class="option-title" aria-label="Trier par Appareil">Appareils <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
+                <li tabindex="0" class="search-option hidden" aria-label="Chercher un appareil">
+                  <form class="appareils_search_form" role="search">
+                    <input class="form-control me-2" type="search" aria-label="Search" minlength="3">
+                    <button class="btn component_search_button " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                  </form>
+                </li>
               </ul>
-              <ul class="dropdown-list-filter" tabindex="0">
-                <li tabindex="0" class="filter-option" aria-label="Trier par Ingrédients">Ustensiles <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
-                <li tabindex="0" class="filter-option hidden" aria-label="Trier par Appareils">Appareils <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
-                <li tabindex="0" class="filter-option hidden" aria-label="Trier par Ustensiles">Ustensiles <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
+              <ul class="dropdown-list-filter ustensiles-options-list" tabindex="0">
+                <li tabindex="0" class="option-title" aria-label="Trier par Ustensile">Ustensiles <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
+                <li tabindex="0" class="search-option hidden" aria-label="Chercher un ustensile">
+                  <form class="ustensils_search_form" role="search">
+                    <input class="form-control me-2" type="search" aria-label="Search" minlength="3">
+                    <button class="btn component_search_button " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                  </form>
+                </li>
               </ul>
             </div>
-            <div>
+            <div class="recettes-count">
               <p>1500 recettes</p>
             </div>
           </div>
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 recettes-list-body">
-            <!-- <div class="col">
-              <div class="shadow-sm card_recette">
-                <img src="./assets/images/les_petits_plats/Recette01.jpg" alt="">
-                <span class="time">10min</span>
-                <div class="card-body">
-                  <h3>Limonade de Coco TEST NOT DYNAMIC</h3>
-                  <h4>RECETTE</h4>
-                  <p class="card-text">Mettre les glaçons à votre goût dans le blender, Ajouter le lait  la crème de coco, le jus de 2 citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée.</p>
-                  <h4>INGREDIENTS</h4>
-                  <div class="ingredients-list">
-                    <div>
-                      <p>Lait de coco</p>
-                      <small class="text-body-secondary">400ml</small>
-                    </div>
-                    <div>
-                      <p>Jus de citron</p>
-                      <small class="text-body-secondary">2</small>
-                    </div>
-                    <div>
-                      <p>Crème de coco</p>
-                      <small class="text-body-secondary">4 cuillères</small>
-                    </div>
-                    <div>
-                      <p>Sucre</p>
-                      <small class="text-body-secondary">20g</small>
-                    </div>
-                    <div>
-                      <p>Glaçons</p>
-                      <small class="text-body-secondary">2</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
