@@ -74,7 +74,8 @@ button.search_button {
 
 .recettes-list-header {
     display: flex;
-    justify-content: space-between;
+    justify-content:flex-end;
+    position: relative;
 }
 
 .recettes-list-header p {
@@ -86,6 +87,8 @@ button.search_button {
 
 .dropdown-lists {
     display: flex;
+    position: absolute;
+    left: 0;
 }
 
 .dropdown-list-filter {
@@ -96,7 +99,7 @@ button.search_button {
     margin-right: 70px;
 }
 
-.filter-option {
+.option-title {
     list-style-type: none;
     cursor: pointer;
     display: flex;
@@ -113,12 +116,53 @@ button.search_button {
     font-size: 16px;
 }
 
+.option-title.opened {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.filter-option, .search-option {
+    list-style-type: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    position: relative; 
+    width: 195px;
+    height: 56px;
+    background-color: white;
+    /* border-radius: 11px; */
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+
 .filter-option i {
     /* font-weight: 400; */
 }
 
+.filter-option.last-option {
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 11px;
+}
+
 .hidden {
     display: none;
+}
+
+
+.component_search_button {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    border: none;
+}
+
+.component_search_button i {
+    font-size: 14px;
+    color: #7A7A7A;
 }
 
 .card_recette {
