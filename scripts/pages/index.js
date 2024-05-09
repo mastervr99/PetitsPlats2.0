@@ -77,7 +77,6 @@ searchForm.addEventListener('submit', function(event) {
         let recipeCard = recipeTemplate(recipe);
         recipeContainer.appendChild(recipeCard);
     });
-<<<<<<< HEAD
 });
 
 
@@ -126,9 +125,7 @@ utensilsForm.addEventListener('submit', function(event) {
 function searchComponent(event, dataArray, listSelector) {
     event.preventDefault();
     let ul = document.querySelector(listSelector);
-    console.log(ul);
     resetList(listSelector, ingredientsArray);
-    console.log(ul);
 
     let form = ul.querySelector('input[type="search"]');
 
@@ -169,7 +166,3 @@ function resetList(listSelector, dataArray) {
         ul.appendChild(li);
     });
 }
-
-=======
-});
->>>>>>> e54bfb009472c75aefffaba9ec31ea070f18e92e
