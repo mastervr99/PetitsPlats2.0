@@ -77,6 +77,7 @@ searchForm.addEventListener('submit', function(event) {
         let recipeCard = recipeTemplate(recipe);
         recipeContainer.appendChild(recipeCard);
     });
+<<<<<<< HEAD
 });
 
 
@@ -169,3 +170,6 @@ function resetList(listSelector, dataArray) {
     });
 }
 
+=======
+});
+>>>>>>> e54bfb009472c75aefffaba9ec31ea070f18e92e
