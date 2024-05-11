@@ -10,6 +10,8 @@ let ingredientsSet = new Set();
 let ustensilesSet = new Set();
 let appliancesSet = new Set();
 
+
+
 recipes.forEach(recipe => {
     let recipeCard = recipeTemplate(recipe);
     recipeContainer.appendChild(recipeCard);
@@ -25,18 +27,20 @@ recipes.forEach(recipe => {
     appliancesSet.add(recipe.appliance);
 });
 
+displayRecipesCount();
+
 ingredientsSet.forEach(function(ingredient) {
-    var li = createOptionElement(ingredient);
+    let li = createOptionElement(ingredient);
     ingredientsOptionsContainer.appendChild(li);
 });
 
 ustensilesSet.forEach(function(ustensil) {
-    var li = createOptionElement(ustensil);
+    let li = createOptionElement(ustensil);
     ustensilesOptionsContainer.appendChild(li);
 });
 
 appliancesSet.forEach(function(appliance) {
-    var li = createOptionElement(appliance);
+    let li = createOptionElement(appliance);
     appliancesOptionsContainer.appendChild(li);
 });
 
@@ -94,14 +98,15 @@ searchForm.addEventListener('submit', function(event) {
         mainContainer.appendChild(div);
         
     }
+    displayRecipesCount();
 });
 
-var filterTitles = document.querySelectorAll('.option-title');
+let filterTitles = document.querySelectorAll('.option-title');
 filterTitles.forEach(function(title) {
     title.addEventListener('click', toggleOptions);
 
     document.addEventListener('click', function(event) {
-        var isClickInside = title.contains(event.target);
+        let isClickInside = title.contains(event.target);
         if (!isClickInside) {
             closeFilterList(event, title);
         }
@@ -115,7 +120,7 @@ filterTitles.forEach(function(title) {
 });
 
 function toggleOptions() {
-    var options = this.nextElementSibling;
+    let options = this.nextElementSibling;
     this.classList.toggle('opened');
     rotateArrow(this);
 
@@ -135,7 +140,7 @@ function rotateArrow(optionTitle){
 }
 
 function closeFilterList(event, title) {
-    var options = title.nextElementSibling;
+    let options = title.nextElementSibling;
 
     title.classList.remove('opened');
     let arrow = title.querySelector('.arrow');
@@ -148,7 +153,7 @@ function closeFilterList(event, title) {
 }
 
 function createOptionElement(optionName) {
-    var li = document.createElement('li');
+    let li = document.createElement('li');
     li.tabIndex = 0;
     li.className = 'filter-option hidden';
     li.setAttribute('aria-label', 'Trier par ' + optionName);
@@ -156,13 +161,13 @@ function createOptionElement(optionName) {
     return li;
 }
 
-var ingredientsArray = Array.from(ingredientsSet);
-var appliancesArray = Array.from(appliancesSet);
-var utensilsArray = Array.from(ustensilesSet);
+let ingredientsArray = Array.from(ingredientsSet);
+let appliancesArray = Array.from(appliancesSet);
+let utensilsArray = Array.from(ustensilesSet);
 
-var ingredientsForm = document.querySelector('.ingredients_search_form');
-var appliancesForm = document.querySelector('.appareils_search_form');
-var utensilsForm = document.querySelector('.ustensils_search_form');
+let ingredientsForm = document.querySelector('.ingredients_search_form');
+let appliancesForm = document.querySelector('.appareils_search_form');
+let utensilsForm = document.querySelector('.ustensils_search_form');
 
 ingredientsForm.addEventListener('submit', function(event) {
     searchComponent(event, ingredientsArray, '.ingredients-options-list');
@@ -217,8 +222,20 @@ function resetList(listSelector, dataArray) {
     });
 
     dataArray.forEach(function(data) {
-        var li = createOptionElement(data);
+        let li = createOptionElement(data);
         li.classList.remove('hidden');
         ul.appendChild(li);
     });
+}
+
+function displayRecipesCount() {
+    let recettes = document.querySelectorAll('.card_recette');
+    let nombreDeRecettes = recettes.length;
+    let recetteCounter= document.querySelector('.recettes-count p');
+
+    if(nombreDeRecettes > 1){
+        recetteCounter.textContent = nombreDeRecettes + ' recettes';
+    } else {
+        recetteCounter.textContent = nombreDeRecettes + ' recette';
+    }
 }
