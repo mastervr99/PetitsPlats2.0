@@ -61,6 +61,8 @@ function searchRecipes(searchTerms) {
         }
     }
 
+   
+
     return results;
 }
 
@@ -75,10 +77,23 @@ searchForm.addEventListener('submit', function(event) {
 
     recipeContainer.innerHTML = '';
 
-    results.forEach(recipe => {
-        let recipeCard = recipeTemplate(recipe);
-        recipeContainer.appendChild(recipeCard);
-    });
+    if(results.length > 0){
+        results.forEach(recipe => {
+            let recipeCard = recipeTemplate(recipe);
+            recipeContainer.appendChild(recipeCard);
+        });
+
+        
+    } else {
+        let div = document.createElement('div');
+        div.className = 'not-found-message';
+        let p = document.createElement('p');
+        p.textContent = `Aucune recette ne contient "${searchTerms}", vous pouvez chercher tarte aux pommes, poisson, etc.`;
+        div.appendChild(p);
+        let mainContainer = document.querySelector('.main_container');
+        mainContainer.appendChild(div);
+        
+    }
 });
 
 var titles = document.querySelectorAll('.option-title');

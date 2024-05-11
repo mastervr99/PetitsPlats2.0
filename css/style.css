@@ -189,6 +189,12 @@ button.search_button {
     padding-top: 40px;
 }
 
+.not-found-message {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .card_recette {
     height: 731px;
     width: 380px;

@@ -31,7 +31,7 @@ export function recipeTemplate(data) {
 
     const p = document.createElement('p');
     p.className = 'card-text';
-    let maxLength = 5000;
+    let maxLength = 125;
     if (description.length > maxLength){
         p.textContent = description.substring(0, maxLength) + '...';
     } else {
