@@ -96,17 +96,53 @@ searchForm.addEventListener('submit', function(event) {
     }
 });
 
-var titles = document.querySelectorAll('.option-title');
-titles.forEach(function(title) {
+var filterTitles = document.querySelectorAll('.option-title');
+filterTitles.forEach(function(title) {
     title.addEventListener('click', toggleOptions);
+
+    document.addEventListener('click', function(event) {
+        var isClickInside = title.contains(event.target);
+        if (!isClickInside) {
+            closeFilterList(event, title);
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeFilterList(event, title);
+        }
+    });
 });
 
 function toggleOptions() {
     var options = this.nextElementSibling;
     this.classList.toggle('opened');
-    
+    rotateArrow(this);
+
     while (options) {
         options.classList.toggle('hidden');
+        options = options.nextElementSibling;
+    }
+}
+
+function rotateArrow(optionTitle){
+    let arrow = optionTitle.querySelector('.arrow');
+    if (arrow.style.transform === 'rotate(180deg)') {
+        arrow.style.transform = 'rotate(0deg)';
+    } else {
+        arrow.style.transform = 'rotate(180deg)';
+    }
+}
+
+function closeFilterList(event, title) {
+    var options = title.nextElementSibling;
+
+    title.classList.remove('opened');
+    let arrow = title.querySelector('.arrow');
+    arrow.style.transform = 'rotate(0deg)';
+
+    while (options) {
+        options.classList.add('hidden');
         options = options.nextElementSibling;
     }
 }
@@ -165,6 +201,10 @@ function searchComponent(event, dataArray, listSelector) {
             if (!isMatch) {
                 ul.removeChild(option);
             }
+        });
+    } else {
+        existingOptions.forEach(function(option) {
+                ul.removeChild(option);
         });
     }
 }

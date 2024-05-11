@@ -121,6 +121,11 @@ button.search_button {
     border-bottom-right-radius: 0;
 }
 
+.arrow {
+    transition: transform 0.5s ease;
+}
+
+
 .filter-option, .search-option {
     list-style-type: none;
     cursor: pointer;
