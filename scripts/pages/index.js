@@ -65,15 +65,12 @@ function searchRecipes(searchTerms) {
         }
     }
 
-   
-
     return results;
 }
 
-let searchForm = document.querySelector('.search_form');
 let searchInput = document.querySelector('.search_input');
 
-searchForm.addEventListener('submit', function(event) {
+searchInput.addEventListener('input', function(event) {
     event.preventDefault();
 
     let searchTerms = searchInput.value;
