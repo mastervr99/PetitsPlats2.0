@@ -75,26 +75,35 @@ searchInput.addEventListener('input', function(event) {
 
     let searchTerms = searchInput.value;
     let results = searchRecipes(searchTerms);
+    let mainContainer = document.querySelector('.main_container');
+    let existingMessage = mainContainer.querySelector('.not-found-message');
 
     recipeContainer.innerHTML = '';
 
     if(results.length > 0){
+        
+        if (existingMessage) {
+            mainContainer.removeChild(existingMessage);
+        }
+
         results.forEach(recipe => {
             let recipeCard = recipeTemplate(recipe);
             recipeContainer.appendChild(recipeCard);
         });
-
         
     } else {
-        let div = document.createElement('div');
-        div.className = 'not-found-message';
-        let p = document.createElement('p');
-        p.textContent = `Aucune recette ne contient "${searchTerms}", vous pouvez chercher tarte aux pommes, poisson, etc.`;
-        div.appendChild(p);
-        let mainContainer = document.querySelector('.main_container');
-        mainContainer.appendChild(div);
+
         
+        if(!existingMessage){
+            let div = document.createElement('div');
+            div.className = 'not-found-message';
+            let p = document.createElement('p');
+            p.textContent = `Aucune recette ne contient "${searchTerms}", vous pouvez chercher tarte aux pommes, poisson, etc.`;
+            div.appendChild(p);
+            mainContainer.appendChild(div);
+        }
     }
+
     displayRecipesCount();
 });
 
