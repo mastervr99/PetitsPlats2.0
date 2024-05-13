@@ -103,7 +103,7 @@ filterTitles.forEach(function(title) {
     title.addEventListener('click', toggleOptions);
 
     document.addEventListener('click', function(event) {
-        let isClickInside = title.contains(event.target);
+        let isClickInside = title.parentNode.contains(event.target);
         if (!isClickInside) {
             closeFilterList(event, title);
         }
@@ -162,24 +162,27 @@ let ingredientsArray = Array.from(ingredientsSet);
 let appliancesArray = Array.from(appliancesSet);
 let utensilsArray = Array.from(ustensilesSet);
 
-let ingredientsForm = document.querySelector('.ingredients_search_form');
-let appliancesForm = document.querySelector('.appareils_search_form');
-let utensilsForm = document.querySelector('.ustensils_search_form');
+let ingredientsSearchInput = document.querySelector('.ingredients_search_form input');
+let appliancesSearchInput = document.querySelector('.appareils_search_form input');
+let utensilsSearchInput = document.querySelector('.ustensils_search_form input');
 
-ingredientsForm.addEventListener('submit', function(event) {
+ingredientsSearchInput.addEventListener('input', function(event) {
     searchComponent(event, ingredientsArray, '.ingredients-options-list');
 });
-appliancesForm.addEventListener('submit', function(event) {
+
+appliancesSearchInput.addEventListener('input', function(event) {
     searchComponent(event, appliancesArray, '.appareils-options-list');
 });
-utensilsForm.addEventListener('submit', function(event) {
+
+utensilsSearchInput.addEventListener('input', function(event) {
     searchComponent(event, utensilsArray, '.ustensiles-options-list');
 });
 
 function searchComponent(event, dataArray, listSelector) {
+
     event.preventDefault();
     let ul = document.querySelector(listSelector);
-    resetList(listSelector, ingredientsArray);
+    resetList(listSelector, dataArray);
 
     let form = ul.querySelector('input[type="search"]');
 
