@@ -47,7 +47,7 @@ form input.search_input {
 
 button.search_button {
     position: absolute;
-    right: 180px;
+    right: 14.2%;
     top: 10px;
     width: 51px;
     height: 51px;
@@ -155,6 +155,10 @@ button.search_button {
 
 .hidden {
     display: none;
+}
+
+.active {
+    color: red;
 }
 
 

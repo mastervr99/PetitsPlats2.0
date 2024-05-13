@@ -10,7 +10,17 @@ let ingredientsSet = new Set();
 let ustensilesSet = new Set();
 let appliancesSet = new Set();
 
-
+recipes.sort((a, b) => {
+    let firstRecipeName = a.name.toUpperCase();
+    let SecondRecipeName = b.name.toUpperCase();
+    if (firstRecipeName < SecondRecipeName) {
+        return -1;
+    }
+    if (firstRecipeName > SecondRecipeName) {
+        return 1;
+    }
+    return 0;
+});
 
 recipes.forEach(recipe => {
     let recipeCard = recipeTemplate(recipe);
@@ -29,20 +39,40 @@ recipes.forEach(recipe => {
 
 displayRecipesCount();
 
-ingredientsSet.forEach(function(ingredient) {
+let ingredientsArray = sortSetAlphabetically(ingredientsSet);
+let appliancesArray = sortSetAlphabetically(appliancesSet);
+let utensilsArray = sortSetAlphabetically(ustensilesSet);
+
+function sortSetAlphabetically(set) {
+    let array = Array.from(set);
+    return array.sort((a, b) => {
+        let firstValue = a.toUpperCase();
+        let secondValue = b.toUpperCase();
+        if (firstValue < secondValue) {
+            return -1;
+        }
+        if (firstValue > secondValue) {
+            return 1;
+        }
+        return 0;
+    });
+}
+
+ingredientsArray.forEach(function(ingredient) {
     let li = createOptionElement(ingredient);
     ingredientsOptionsContainer.appendChild(li);
 });
 
-ustensilesSet.forEach(function(ustensil) {
+appliancesArray.forEach(function(ustensil) {
     let li = createOptionElement(ustensil);
     ustensilesOptionsContainer.appendChild(li);
 });
 
-appliancesSet.forEach(function(appliance) {
+utensilsArray.forEach(function(appliance) {
     let li = createOptionElement(appliance);
     appliancesOptionsContainer.appendChild(li);
 });
+
 
 function searchRecipes(searchTerms) {
     let results = [];
@@ -167,9 +197,6 @@ function createOptionElement(optionName) {
     return li;
 }
 
-let ingredientsArray = Array.from(ingredientsSet);
-let appliancesArray = Array.from(appliancesSet);
-let utensilsArray = Array.from(ustensilesSet);
 
 let ingredientsSearchInput = document.querySelector('.ingredients_search_form input');
 let appliancesSearchInput = document.querySelector('.appareils_search_form input');
