@@ -158,7 +158,7 @@ button.search_button {
 }
 
 .active {
-    color: red;
+    background-color: #FFD15B;
 }
 
 
@@ -172,6 +172,30 @@ button.search_button {
 .component_search_button i {
     font-size: 14px;
     color: #7A7A7A;
+}
+
+.filters-tags-list ul {
+    display: flex;
+    padding-left: 0;
+    padding-top: 10px;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+    gap: 70px;
+    width: 100%;
+}
+
+.filter-tag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    width: 195px;
+    height: 56px;
+    background-color: #FFD15B;
+    border-radius: 11px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .card_recette {

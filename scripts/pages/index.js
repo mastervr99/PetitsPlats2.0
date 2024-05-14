@@ -264,6 +264,21 @@ function resetList(listSelector, dataArray) {
     });
 }
 
+function addTag(tagText) {
+    let tags_list = document.querySelector(".filters-tags-list");
+  
+    let ul = tags_list.querySelector('ul');
+    if (!ul) {
+      ul = document.createElement('ul');
+      tags_list.appendChild(ul);
+    }
+  
+    let li = document.createElement('li');
+    li.className = 'filter-tag';
+    li.textContent = tagText;
+  
+    ul.appendChild(li);
+  }
 function displayRecipesCount() {
     let recettes = document.querySelectorAll('.card_recette');
     let nombreDeRecettes = recettes.length;
