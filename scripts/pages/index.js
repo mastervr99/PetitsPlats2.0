@@ -27,14 +27,14 @@ recipes.forEach(recipe => {
     recipeContainer.appendChild(recipeCard);
 
     recipe.ingredients.forEach(function(ingredient) {
-        ingredientsSet.add(ingredient.ingredient);
+        ingredientsSet.add(ingredient.ingredient.toLowerCase());
     });
 
     recipe.ustensils.forEach(function(ustensil) {
-        ustensilesSet.add(ustensil);
+        ustensilesSet.add(ustensil.toLowerCase());
     });
 
-    appliancesSet.add(recipe.appliance);
+    appliancesSet.add(recipe.appliance.toLowerCase());
 });
 
 displayRecipesCount();
@@ -63,14 +63,14 @@ ingredientsArray.forEach(function(ingredient) {
     ingredientsOptionsContainer.appendChild(li);
 });
 
-appliancesArray.forEach(function(ustensil) {
-    let li = createOptionElement(ustensil);
-    ustensilesOptionsContainer.appendChild(li);
-});
-
-utensilsArray.forEach(function(appliance) {
+appliancesArray.forEach(function(appliance) {
     let li = createOptionElement(appliance);
     appliancesOptionsContainer.appendChild(li);
+});
+
+utensilsArray.forEach(function(ustensil) {
+    let li = createOptionElement(ustensil);
+    ustensilesOptionsContainer.appendChild(li);
 });
 
 
