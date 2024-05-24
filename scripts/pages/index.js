@@ -291,7 +291,12 @@ filterLists.forEach(list => {
 
             let searchTerms = searchInput.value;
             let activeFilters = Array.from(document.querySelectorAll('.filter-option.active'));
-            addTag(option.textContent);
+
+            if (option.classList.contains('active')) {
+                addTag(option.textContent);
+            } else {
+                removeTag(option.textContent);
+            }
 
             search.searchRecipes(searchTerms, activeFilters);
         }
@@ -321,12 +326,25 @@ function addTag(tagText) {
       ul = document.createElement('ul');
       tags_list.appendChild(ul);
     }
-  
-    let li = document.createElement('li');
-    li.className = 'filter-tag';
-    li.textContent = tagText;
-  
-    ul.appendChild(li);
+
+    let existingTag = Array.from(ul.children).find(child => child.textContent === tagText);
+    if (!existingTag) {
+        let li = document.createElement('li');
+        li.className = 'filter-tag';
+        li.textContent = tagText;
+        ul.appendChild(li);
+    }
+}
+
+function removeTag(tagText) {
+    let tags_list = document.querySelector(".filters-tags-list");
+    let ul = tags_list.querySelector('ul');
+    if (ul) {
+        let tagToRemove = Array.from(ul.children).find(child => child.textContent === tagText);
+        if (tagToRemove) {
+            ul.removeChild(tagToRemove);
+        }
+    }
 }
 
 function resetList(listSelector, dataSet) {
