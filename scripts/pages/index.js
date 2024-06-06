@@ -283,27 +283,52 @@ utensilsSearchInput.addEventListener('input', function(event) {
 });
 
 let filterLists = document.querySelectorAll('.dropdown-list-filter');
+
 filterLists.forEach(list => {
     list.addEventListener('click', function(event) {
         let option = event.target;
         if (option.classList.contains('filter-option')) {
-            option.classList.toggle('active');
+            if (option.classList.contains('active')) {
+                option.classList.remove('active');
+
+                let span = option.querySelector('span');
+                option.removeChild(span);
+
+                removeTag(option.textContent.trim());
+
+            } else {
+                option.classList.add('active');
+
+                let span = document.createElement('span');
+                span.style.cursor = 'pointer';
+                span.addEventListener('click', function(event) {
+                    event.stopPropagation();
+
+                    option.classList.remove('active');
+                    option.removeChild(span);
+
+                    removeTag(option.textContent);
+
+                    let searchTerms = searchInput.value;
+                    let activeFilters = Array.from(document.querySelectorAll('.filter-option.active'));
+                    search.searchRecipes(searchTerms, activeFilters);
+                });
+
+                let i = document.createElement('i');
+                i.className = 'fa-solid fa-xmark';
+                span.appendChild(i);
+
+                option.appendChild(span);
+
+                addTag(option.textContent.replace(' x', ''));
+            }
 
             let searchTerms = searchInput.value;
             let activeFilters = Array.from(document.querySelectorAll('.filter-option.active'));
-
-            if (option.classList.contains('active')) {
-                addTag(option.textContent);
-            } else {
-                removeTag(option.textContent);
-            }
-
             search.searchRecipes(searchTerms, activeFilters);
         }
     });
 });
-
-
 
 
 function displayRecipesCount() {
@@ -332,91 +357,95 @@ function addTag(tagText) {
         let li = document.createElement('li');
         li.className = 'filter-tag';
         li.textContent = tagText;
+ 
+        let span = document.createElement('span');
+        span.style.cursor = 'pointer';
+        span.addEventListener('click', function() {
+            ul.removeChild(li);
+
+            let activeFilter = Array.from(document.querySelectorAll('.filter-option.active')).find(filter => filter.textContent === tagText);
+            if (activeFilter) {
+                activeFilter.classList.remove('active');
+                let span  = activeFilter.querySelector('span');
+                activeFilter.removeChild(span);
+
+            }
+
+            let searchTerms = searchInput.value;
+            let activeFilters = Array.from(document.querySelectorAll('.filter-option.active'));
+            search.searchRecipes(searchTerms, activeFilters);
+        });
+
+        let i = document.createElement('i');
+        i.className = 'fa-solid fa-xmark';
+        span.appendChild(i);
+
+        li.appendChild(span);
         ul.appendChild(li);
     }
 }
 
 function removeTag(tagText) {
-    let tags_list = document.querySelector(".filters-tags-list");
-    let ul = tags_list.querySelector('ul');
-    if (ul) {
-        let tagToRemove = Array.from(ul.children).find(child => child.textContent === tagText);
-        if (tagToRemove) {
-            ul.removeChild(tagToRemove);
-        }
+    let ul = document.querySelector(".filters-tags-list ul");
+
+    let tagToRemove = Array.from(ul.children).find(child => child.textContent === tagText);
+    if (tagToRemove) {
+        ul.removeChild(tagToRemove);
     }
 }
 
-function resetList(listSelector, dataSet) {
-    let ul = document.querySelector(listSelector);
-    let options = ul.querySelectorAll('.filter-option');
-    options.forEach(function(option) {
-        ul.removeChild(option);
-    });
 
-    let dataArray = Array.from(dataSet).sort((a, b) => {
-        let firstValue = a.toUpperCase();
-        let secondValue = b.toUpperCase();
-        if (firstValue < secondValue) {
-            return -1;
-        }
-        if (firstValue > secondValue) {
-            return 1;
-        }
-        return 0;
-    });
-
-    dataArray.forEach(function(data) {
-        let li = createOptionElement(data);
-        li.classList.remove('hidden');
-        ul.appendChild(li);
-    });
-}
 
 function searchComponent(event, dataSet, listSelector) {
     event.preventDefault();
     let ul = document.querySelector(listSelector);
-    resetList(listSelector, dataSet);
-
     let form = ul.querySelector('input[type="search"]');
-
     let searchValue = form.value;
 
-    let matchingData = Array.from(dataSet).filter(function(data) {
-        let regex = new RegExp(searchValue.toLowerCase());
-        return regex.test(data.toLowerCase());
+    resetOptions(ul);
+
+    let matchingData = Array.from(dataSet).filter(data => data.toLowerCase().includes(searchValue.toLowerCase()));
+
+    let currentOptions = Array.from(ul.getElementsByClassName('filter-option'));
+
+    currentOptions.forEach(option => {
+        let optionData = option.textContent.toLowerCase();
+        if (!matchingData.includes(optionData)) {
+            ul.removeChild(option);
+        }
     });
 
-    let existingOptions = ul.querySelectorAll('.filter-option');
+    matchingData.forEach(data => {
+        let existingOption = currentOptions.find(option => option.textContent.toLowerCase() === data);
+        if (!existingOption) {
+            let newOption = createOptionElement(data);
+            ul.appendChild(newOption);
+        }
+    });
+}
 
-    if(matchingData.length > 0){
-        existingOptions = Array.from(existingOptions).sort((a, b) => {
-            let firstValue = a.textContent.toUpperCase();
-            let secondValue = b.textContent.toUpperCase();
-            if (firstValue < secondValue) {
-                return -1;
-            }
-            if (firstValue > secondValue) {
-                return 1;
-            }
-            return 0;
-        });
-        existingOptions.forEach(function(option) {
-            let optionData = option.textContent.toLowerCase();
-        
-            let isMatch = matchingData.some(function(data) {
-                return data.toLowerCase() === optionData;
-            });
-        
-            if (!isMatch) {
-                ul.removeChild(option);
-            }
-        });
-    } else {
-        existingOptions.forEach(function(option) {
-                ul.removeChild(option);
-        });
-    }
+function resetOptions(ul) {
+    let initialOptions = Array.from(ul.getElementsByClassName('filter-option'));
+    initialOptions.forEach(option => {
+        if (option.classList.contains('hidden')) {
+            option.classList.remove('hidden');
+        }
+    });
+
+    let sortedOptions = initialOptions.sort((a, b) => a.textContent.localeCompare(b.textContent));
+
+    sortedOptions.forEach(option => {
+        ul.appendChild(option);
+    });
+}
+
+function createOptionElement(optionName) {
+    let li = document.createElement('li');
+    li.tabIndex = 0;
+    li.className = 'filter-option hidden';
+    li.setAttribute('aria-label', 'Trier par ' + optionName);
+    li.textContent = optionName;
+    return li;
 }
 
 function toggleOptions() {
@@ -452,11 +481,3 @@ function closeFilterList(event, title) {
     }
 }
 
-function createOptionElement(optionName) {
-    let li = document.createElement('li');
-    li.tabIndex = 0;
-    li.className = 'filter-option hidden';
-    li.setAttribute('aria-label', 'Trier par ' + optionName);
-    li.textContent = optionName;
-    return li;
-}
