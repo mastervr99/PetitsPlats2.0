@@ -47,7 +47,7 @@ form input.search_input {
 
 button.search_button {
     position: absolute;
-    right: 180px;
+    right: 14.2%;
     top: 10px;
     width: 51px;
     height: 51px;
@@ -121,6 +121,11 @@ button.search_button {
     border-bottom-right-radius: 0;
 }
 
+.arrow {
+    transition: transform 0.5s ease;
+}
+
+
 .filter-option, .search-option {
     list-style-type: none;
     cursor: pointer;
@@ -152,6 +157,10 @@ button.search_button {
     display: none;
 }
 
+.active {
+    background-color: #FFD15B;
+}
+
 
 .component_search_button {
     position: absolute;
@@ -163,6 +172,30 @@ button.search_button {
 .component_search_button i {
     font-size: 14px;
     color: #7A7A7A;
+}
+
+.filters-tags-list ul {
+    display: flex;
+    padding-left: 0;
+    padding-top: 10px;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+    gap: 70px;
+    width: 100%;
+}
+
+.filter-tag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    width: 195px;
+    height: 56px;
+    background-color: #FFD15B;
+    border-radius: 11px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .card_recette {
@@ -187,6 +220,12 @@ button.search_button {
 
 .recettes-list-body {
     padding-top: 40px;
+}
+
+.not-found-message {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .card_recette {
