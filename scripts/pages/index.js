@@ -495,3 +495,13 @@ function rebuildTagsAndFilters(results) {
     ustensilesFilter.updateOptions();
     appliancesFilter.updateOptions();
 }
+
+document.querySelector('.navbar-toggler').addEventListener('click', function() {
+    var menu = document.querySelector('#dropdown-lists-collapse');
+    if (menu.style.display === "none") {
+      menu.style.display = "block";
+    } else {
+      menu.style.display = "none";
+    }
+  });
+  
