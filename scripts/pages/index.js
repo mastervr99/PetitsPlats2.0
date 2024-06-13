@@ -482,7 +482,6 @@ function runResearch(searchTerms, activeFilters){
 
     //reconstruire les tags et filtres
     rebuildTagsAndFilters(results);
-
 }
 
 function rebuildTagsAndFilters(results) {

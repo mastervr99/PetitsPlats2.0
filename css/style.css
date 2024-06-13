@@ -82,7 +82,7 @@ button.search_button {
 
 .recettes-list-header {
     display: flex;
-    justify-content:space-between;
+    justify-content: flex-end;
     position: relative;
 }
 
@@ -95,6 +95,13 @@ button.search_button {
 
 .dropdown-lists {
     position: absolute;
+    z-index: 10;
+    display: flex;
+    left: 0;
+}
+
+.dropdown-lists.navbar.navbar-expand-lg{
+    display: none;
 }
 
 .dropdown-list-filter {
@@ -103,6 +110,11 @@ button.search_button {
     padding: 0;
     z-index: 5;
     margin-right: 70px;
+    max-height: 300px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 11px;
 }
 
 .option-title {
@@ -303,12 +315,26 @@ button.search_button {
     color: #7A7A7A;
 }
 
-@media (max-width: 971px) {
+@media (max-width: 990px) {
+
+    .dropdown-lists.desktop-display {
+        display: none;
+    }
+
+    .dropdown-lists.navbar.navbar-expand-lg{
+        display: block;
+    }
+
+    .recettes-list-header {
+        justify-content: space-between;
+    }
+    
     #dropdown-lists-collapse {
         position : absolute;
         z-index: 10;
         top: 70px;
     }
+
 }
 
 

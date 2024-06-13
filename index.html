@@ -34,12 +34,42 @@
       <div class="album bg-body-tertiary main_container ">
         <div class="container">
           <div class="recettes-list-header">
+
+            <div class="dropdown-lists desktop-display">
+              <ul class="dropdown-list-filter ingredients-options-list" tabindex="0" aria-label="Trier par Ingrédients">
+                <li tabindex="0" class="option-title">Ingrédients <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
+                <li tabindex="0" class="search-option hidden" aria-label="Chercher un ingrédient">
+                  <form class="ingredients_search_form" role="search">
+                    <input class="form-control me-2" type="search" aria-label="Search" minlength="3">
+                    <button class="btn component_search_button " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                  </form>
+                </li>
+              </ul>
+              <ul class="dropdown-list-filter appareils-options-list" tabindex="0" aria-label="Trier par Appareil">
+                <li tabindex="0" class="option-title" >Appareils <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
+                <li tabindex="0" class="search-option hidden" aria-label="Chercher un appareil">
+                  <form class="appareils_search_form" role="search">
+                    <input class="form-control me-2" type="search" aria-label="Search" minlength="3">
+                    <button class="btn component_search_button " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                  </form>
+                </li>
+              </ul>
+              <ul class="dropdown-list-filter ustensiles-options-list" tabindex="0" aria-label="Trier par Ustensile">
+                <li tabindex="0" class="option-title" >Ustensiles <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
+                <li tabindex="0" class="search-option hidden" aria-label="Chercher un ustensile">
+                  <form class="ustensils_search_form" role="search">
+                    <input class="form-control me-2" type="search" aria-label="Search" minlength="3">
+                    <button class="btn component_search_button " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                  </form>
+                </li>
+              </ul>
+            </div>
+
             <div class="dropdown-lists navbar navbar-expand-lg navbar-light bg-light">
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dropdown-lists-collapse" aria-controls="dropdown-lists-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="dropdown-lists-collapse">
-                <!-- Vos listes déroulantes vont ici -->
                 <ul class="dropdown-list-filter ingredients-options-list" tabindex="0" aria-label="Trier par Ingrédients">
                   <li tabindex="0" class="option-title">Ingrédients <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
                   <li tabindex="0" class="search-option hidden" aria-label="Chercher un ingrédient">
@@ -70,35 +100,7 @@
               </div>
             </div>
 
-            <!-- <div class="dropdown-lists">
-              <ul class="dropdown-list-filter ingredients-options-list" tabindex="0" aria-label="Trier par Ingrédients">
-                <li tabindex="0" class="option-title">Ingrédients <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
-                <li tabindex="0" class="search-option hidden" aria-label="Chercher un ingrédient">
-                  <form class="ingredients_search_form" role="search">
-                    <input class="form-control me-2" type="search" aria-label="Search" minlength="3">
-                    <button class="btn component_search_button " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                  </form>
-                </li>
-              </ul>
-              <ul class="dropdown-list-filter appareils-options-list" tabindex="0" aria-label="Trier par Appareil">
-                <li tabindex="0" class="option-title" >Appareils <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
-                <li tabindex="0" class="search-option hidden" aria-label="Chercher un appareil">
-                  <form class="appareils_search_form" role="search">
-                    <input class="form-control me-2" type="search" aria-label="Search" minlength="3">
-                    <button class="btn component_search_button " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                  </form>
-                </li>
-              </ul>
-              <ul class="dropdown-list-filter ustensiles-options-list" tabindex="0" aria-label="Trier par Ustensile">
-                <li tabindex="0" class="option-title" >Ustensiles <span class="arrow"><i class="fa-solid fa-angle-down"></i></span></li>
-                <li tabindex="0" class="search-option hidden" aria-label="Chercher un ustensile">
-                  <form class="ustensils_search_form" role="search">
-                    <input class="form-control me-2" type="search" aria-label="Search" minlength="3">
-                    <button class="btn component_search_button " type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                  </form>
-                </li>
-              </ul>
-            </div> -->
+          
             <div class="recettes-count">
               <p></p>
             </div>
