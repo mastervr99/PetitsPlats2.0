@@ -115,6 +115,12 @@ button.search_button {
     overflow-y: auto;
     overflow-x: hidden;
     border-radius: 11px;
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+}
+
+.dropdown-list-filter::-webkit-scrollbar {
+    display: none;
 }
 
 .option-title {
@@ -318,11 +324,9 @@ button.search_button {
 @media (max-width: 990px) {
 
     .dropdown-lists.desktop-display {
-        display: none;
-    }
-
-    .dropdown-lists.navbar.navbar-expand-lg{
-        display: block;
+        position:relative;
+        display: flex;
+        flex-wrap: wrap;
     }
 
     .recettes-list-header {

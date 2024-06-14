@@ -77,7 +77,7 @@ class Filter {
                 return setOption.toLowerCase() === optionData;
             });
 
-            if (!isMatch) {
+            if (!isMatch && !option.classList.contains('active')) {
                 this.ul.removeChild(option);
             }
         });
