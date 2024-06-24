@@ -27,11 +27,18 @@ class Recipe {
     }
 
     populateSets() {
-        this.data.forEach(recipe => {
-            recipe.ingredients.forEach(ingredient => this.ingredientsSet.add(ingredient.ingredient.toLowerCase()));
-            recipe.ustensils.forEach(ustensil => this.ustensilesSet.add(ustensil.toLowerCase()));
+        for (let i = 0; i < this.data.length; i++) {
+            let recipe = this.data[i];
+            for (let j = 0; j < recipe.ingredients.length; j++) {
+                let ingredient = recipe.ingredients[j];
+                this.ingredientsSet.add(ingredient.ingredient.toLowerCase());
+            }
+            for (let k = 0; k < recipe.ustensils.length; k++) {
+                let ustensil = recipe.ustensils[k];
+                this.ustensilesSet.add(ustensil.toLowerCase());
+            }
             this.appliancesSet.add(recipe.appliance.toLowerCase());
-        });
+        }
     }
 
     getFilteredSets(filteredRecipes) {
@@ -39,11 +46,18 @@ class Recipe {
         let appliancesSet = new Set();
         let ustensilesSet = new Set();
 
-        filteredRecipes.forEach(recipe => {
-            recipe.ingredients.forEach(ingredient => ingredientsSet.add(ingredient.ingredient.toLowerCase()));
-            recipe.ustensils.forEach(ustensil => ustensilesSet.add(ustensil.toLowerCase()));
+        for (let i = 0; i < filteredRecipes.length; i++) {
+            let recipe = filteredRecipes[i];
+            for (let j = 0; j < recipe.ingredients.length; j++) {
+                let ingredient = recipe.ingredients[j];
+                ingredientsSet.add(ingredient.ingredient.toLowerCase());
+            }
+            for (let k = 0; k < recipe.ustensils.length; k++) {
+                let ustensil = recipe.ustensils[k];
+                ustensilesSet.add(ustensil.toLowerCase());
+            }
             appliancesSet.add(recipe.appliance.toLowerCase());
-        });
+        }
 
         return { ingredientsSet, appliancesSet, ustensilesSet };
     }
@@ -59,40 +73,53 @@ class Filter {
 
     fillOptions() {
         let setArray = this.sortSetAlphabetically(this.set);
-        setArray.forEach(option => {
+        for (let i = 0; i < setArray.length; i++) {
+            let option = setArray[i];
             let existingOption = Array.from(this.ul.children).find(child => child.textContent.toLowerCase() === option.toLowerCase());
             if (!existingOption) {
                 let li = createOptionElement(option);
                 this.ul.appendChild(li);
             }
-        });
+        }
     }
 
     updateOptions() {
         let existingOptions = this.ul.querySelectorAll('.filter-option');
-
-        existingOptions.forEach(option => {
+    
+        for (let i = 0; i < existingOptions.length; i++) {
+            let option = existingOptions[i];
             let optionData = option.textContent.toLowerCase();
-            let isMatch = Array.from(this.set).some(function(setOption) {
-                return setOption.toLowerCase() === optionData;
-            });
-
+            let isMatch = false;
+            for (let j = 0; j < this.set.size; j++) {
+                let setOption = Array.from(this.set)[j];
+                if (setOption.toLowerCase() === optionData) {
+                    isMatch = true;
+                    break;
+                }
+            }
+    
             if (!isMatch && !option.classList.contains('active')) {
                 this.ul.removeChild(option);
             }
-        });
-
+        }
+    
         let setArray = this.sortSetAlphabetically(this.set);
-        setArray.forEach(option => {
-            let isMatch = Array.from(existingOptions).some(function(existingOption) {
-                return existingOption.textContent.toLowerCase() === option.toLowerCase();
-            });
-
+        for (let i = 0; i < setArray.length; i++) {
+            let option = setArray[i];
+            let isMatch = false;
+            for (let j = 0; j < existingOptions.length; j++) {
+                let existingOption = existingOptions[j];
+                if (existingOption.textContent.toLowerCase() === option.toLowerCase()) {
+                    isMatch = true;
+                    break;
+                }
+            }
+    
             if (!isMatch) {
                 let li = createOptionElement(option);
                 this.ul.appendChild(li);
             }
-        });
+        }
     }
 
     sortSetAlphabetically(set) {
@@ -202,7 +229,8 @@ searchInput.addEventListener('input', function(event) {
 });
 
 let filterTitles = document.querySelectorAll('.option-title');
-filterTitles.forEach(function(title) {
+for (let i = 0; i < filterTitles.length; i++) {
+    let title = filterTitles[i];
     title.addEventListener('click', toggleOptions);
 
     document.addEventListener('click', function(event) {
@@ -217,7 +245,7 @@ filterTitles.forEach(function(title) {
             closeFilterList(event, title);
         }
     });
-});
+}
 
 let ingredientsSearchInput = document.querySelector('.ingredients_search_form input');
 let appliancesSearchInput = document.querySelector('.appareils_search_form input');
@@ -237,7 +265,8 @@ utensilsSearchInput.addEventListener('input', function(event) {
 
 let filterLists = document.querySelectorAll('.dropdown-list-filter');
 
-filterLists.forEach(list => {
+for (let i = 0; i < filterLists.length; i++) {
+    let list = filterLists[i];
     list.addEventListener('click', function(event) {
         let option = event.target;
         if (option.classList.contains('filter-option')) {
@@ -281,7 +310,7 @@ filterLists.forEach(list => {
             runResearch(searchTerms, activeFilters);
         }
     });
-});
+}
 
 
 function displayRecipesCount(results) {
@@ -360,35 +389,48 @@ function searchComponent(event, dataSet, listSelector) {
 
     let currentOptions = Array.from(ul.getElementsByClassName('filter-option'));
 
-    currentOptions.forEach(option => {
+    for (let i = 0; i < currentOptions.length; i++) {
+        let option = currentOptions[i];
         let optionData = option.textContent.toLowerCase();
         if (!matchingData.includes(optionData)) {
             ul.removeChild(option);
         }
-    });
+    }
 
-    matchingData.forEach(data => {
-        let existingOption = currentOptions.find(option => option.textContent.toLowerCase() === data);
+    for (let i = 0; i < matchingData.length; i++) {
+        let data = matchingData[i];
+        let existingOption = null;
+        for (let j = 0; j < currentOptions.length; j++) {
+            let option = currentOptions[j];
+            if (option.textContent.toLowerCase() === data) {
+                existingOption = option;
+                break;
+            }
+        }
+
         if (!existingOption) {
             let newOption = createOptionElement(data);
             ul.appendChild(newOption);
         }
-    });
+    }
 }
 
 function resetOptions(ul) {
     let initialOptions = Array.from(ul.getElementsByClassName('filter-option'));
-    initialOptions.forEach(option => {
+
+    for (let i = 0; i < initialOptions.length; i++) {
+        let option = initialOptions[i];
         if (option.classList.contains('hidden')) {
             option.classList.remove('hidden');
         }
-    });
+    }
 
-    let sortedOptions = initialOptions.sort((a, b) => a.textContent.localeCompare(b.textContent));
+    initialOptions.sort((a, b) => a.textContent.localeCompare(b.textContent));
 
-    sortedOptions.forEach(option => {
+    for (let i = 0; i < initialOptions.length; i++) {
+        let option = initialOptions[i];
         ul.appendChild(option);
-    });
+    }
 }
 
 function createOptionElement(optionName) {
@@ -455,10 +497,11 @@ function displayRecipes(results, searchTerms) {
         ustensilesFilter.updateOptions();
         appliancesFilter.updateOptions();
 
-        results.forEach(recipe => {
+        for (let i = 0; i < results.length; i++) {
+            let recipe = results[i];
             let recipeCard = recipeTemplate(recipe);
             recipeContainer.appendChild(recipeCard);
-        });
+        }        
 
     } else {
         let div = document.createElement('div');
@@ -495,12 +538,12 @@ function rebuildTagsAndFilters(results) {
     appliancesFilter.updateOptions();
 }
 
-document.querySelector('.navbar-toggler').addEventListener('click', function() {
-    var menu = document.querySelector('#dropdown-lists-collapse');
-    if (menu.style.display === "none") {
-      menu.style.display = "block";
-    } else {
-      menu.style.display = "none";
-    }
-  });
+// document.querySelector('.navbar-toggler').addEventListener('click', function() {
+//     var menu = document.querySelector('#dropdown-lists-collapse');
+//     if (menu.style.display === "none") {
+//       menu.style.display = "block";
+//     } else {
+//       menu.style.display = "none";
+//     }
+//   });
   
